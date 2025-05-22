@@ -20,7 +20,7 @@ function registrarLog(nomeAluno) {
 app.post('/logs', (req, res) => {
     const { nome } = req.body
     if (!nome) {
-        return res.status(400).json({ error: 'nome do aluno é obrigatório.'})
+        return res.status(400).json({ error: 'Nome do aluno é obrigatório.'})
         }
     const id = registrarLog(nome)
     res.json({id, mensagem:'Log registrado com sucesso!'})
@@ -38,4 +38,8 @@ app.get('/logs/:id',(req,res)=>{
     res.status(404).json({error: 'Log não encontrado'})
 })
 
+//Iniciando o servidor
+app.listen(3000, () => {
+    console.log ('Servidor rodando na porta 3000')
+})
 
