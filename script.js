@@ -26,4 +26,16 @@ app.post('/logs', (req, res) => {
     res.json({id, mensagem:'Log registrado com sucesso!'})
     });
 
+//Consultar Log por ID
+app.get('/logs/:id',(req,res)=>{
+    const {id} = req.params
+    const logs = fs.readFileSync('logs.txt','utf-8').slice('\n')
+
+    const logEncontrado = logs.find(log => log.startsWith(id))
+    if (logEncontrado){
+        return res.json({mensagem: logEncontrado})
+    }
+    res.status(404).json({error: 'Log não encontrado'})
+})
+
 
